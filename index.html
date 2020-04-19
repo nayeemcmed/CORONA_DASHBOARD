@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Document</title>
+
+
+
+</head>
+<body>
+	<h1 align="Middle" style="color:#1EBCE5">CMED_Corona Dashboard</h1>
+	<div class="card" style="width: 17rem;">
+		<div class="card-body">
+			<h6 id="data" align="middle" style="color:#1EBCE5;font-size:29px"></h6><br>
+			<h5 align="middle">Total Confirmed</h5>
+			<p id= "country"  align="middle" style="color:red;font-size:26px;font-weight: bold;"></p>
+		</div>
+	</div>
+	<br>
+	
+
+	<div class="card" style="width: 17rem;">
+		<div class="card-body">
+			<h5 align="middle">DEATHS</h5>
+			<h6 id="cases" align="middle" style="color:red;font-size:24px;font-weight: bold;"></h6>
+			<h5 align="middle">RECOVERED</h5>
+			<p id= "rec"  align="middle" style="color: #1EBCE5;font-size:24px;font-weight: bold;"></p>
+		</div>
+	</div>
+	<br>
+
+
+	<div class="card" style="width: 17rem;">
+		<div class="card-body">
+			<h5 align="middle" >STILL ACTIVE</h5>
+			<h6 id="active" align="middle" style="color:red;font-size:24px;font-weight: bold;"></h6>
+			<h5 align="middle">TOTAL TESTED</h5>
+			<p id= "tt" align="middle" style="color: #1EBCE5;font-size:24px;font-weight: bold;"></p>
+		</div>
+	</div>
+
+
+<script>  
+
+const url = "https://coronavirus-19-api.herokuapp.com/countries/Bangladesh"; // site that doesn’t send Access-Control-*
+fetch(url) // https://cors-anywhere.herokuapp.com/https://example.com
+  .then(response => response.text())  
+.then(html => {
+  // console.log(html);
+  document.getElementById('data').innerHTML = html;
+	var obj = JSON.parse(html);
+	
+	document.getElementById('data').innerHTML = obj.country;
+	document.getElementById('country').innerHTML = obj.cases;
+	document.getElementById('cases').innerHTML = obj.deaths;
+	document.getElementById('rec').innerHTML = obj.recovered;
+	document.getElementById('active').innerHTML = obj.active;
+	document.getElementById('tt').innerHTML = obj.totalTests;
+})
+.catch((err) => console.log("Can’t access " + url + " response. Blocked by browser?" + err));
+</script>
+</body>
+</html>
