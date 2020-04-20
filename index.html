@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	<script src="jquery-1.11.3.min.js"></script>
+	<script type = "text/javascript" src="Chart.js"> </script>
 	<title>Document</title>
 
 <!--Developed by MD NAYEEM HOSSAIN, 
@@ -13,6 +15,7 @@
 		
 		<style>
 			.card {
+				border-radius: 22px;
 				box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 				transition: 0.3s;
 				width: 22%;
@@ -30,6 +33,13 @@
 display: none;
 			}
 
+			#active{
+				display: none;
+			}
+			#hide{
+				display: none;
+			}
+
 			#piechart{
 			position: absolute;
     bottom: 0px;
@@ -40,6 +50,7 @@ display: none;
     top:300px;
     right:30px;
 			}
+
 			</style>
 
 </head>
@@ -47,17 +58,17 @@ display: none;
 	<div class="card">
 		<div class="container">
 			<p id="data" align="middle" style="font-family:Century Gothic;font-weight:bold;color:#1EBCE5;font-size: 28px;"></p>
-			<h3 align="middle" style="font-family:Century Gothic;"><b>TOTAL CONFIRMED</b></h3> 
-			<p id= "country"  align="middle" style="color:red;font-size:34px;font-weight: bold;"></p>
+			<h2 align="middle" style="font-family:Century Gothic;font-stretch: expanded;">Total Confirmed</h2> 
+			<p id= "country"  align="middle" style="color:red;font-size:42px;font-weight: regular;"></p>
 		</div>
 	</div>
 	
 
 	<div class="card" >
 		<div class="container">
-			<h3 align="middle" style="font-family:Century Gothic;">DEATHS</h3>
+			<h2 align="middle" style="font-family:Century Gothic;font-stretch: expanded;">Deaths</h2>
 			<p id="cases" align="middle" align="middle" style="color:red;font-size:24px;font-weight: bold;" ></p>
-			<h3 align="middle" style="font-family: Century Gothic;">RECOVERED</h3>
+			<h2 align="middle" style="font-family: Century Gothic;font-stretch: expanded;">Recovered</h2>
 			<p id= "rec"  align="middle" style="color:#1EBCE5;font-size:24px;font-weight: bold;" ></p>
 		</div>
 	</div>
@@ -66,10 +77,10 @@ display: none;
 
 	<div class="card">
 		<div class="container">
-			<h3 align="middle" style="font-family:Century Gothic;">STILL ACTIVE</h3>
+			<h2 id="hide" align="middle" style="font-family:Century Gothic;font-stretch: expanded;">Still affected</h2>
 			<p id="active" align="middle" style="color:red;font-size:24px;font-weight: bold;" ></p>
-			<h3 align="middle"style="font-family:Century Gothic;">TOTAL TESTED</h3>
-			<p id= "tt" align="middle" style="color: #1EBCE5;font-size:24px;font-weight: bold;"></p>
+			<h2 align="middle"style="font-family:Century Gothic;font-stretch: expanded;">Total Tested</h2>
+			<p id= "tt" align="middle" style="color: #1EBCE5;font-size:42px;font-weight: bold;"></p>
 		</div>
 	</div>
 
@@ -94,68 +105,6 @@ fetch(url) // https://cors-anywhere.herokuapp.com/https://example.com
 })
 .catch((err) => console.log("Can’t access " + url + " response. Blocked by browser?" + err));
 </script>
-
-<div id="piechart" align="middle"></div><br>
-
-
-<script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-// Draw the chart and set the chart values
-function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-  ['Task', 'Hours per Day'],
-  ['DEATHS', 91],
-  ['RECOVERY', 75]
-]);
-
-  // Optional; add a title and set the width and height of the chart
-  var options = {'title':'DEATHS vs RECOVERY vs ACTIVE', 'width':500, 'height':400};
-
-  // Display the chart inside the <div> element with id="piechart"
-  var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-  chart.draw(data, options);
-}
-</script>
-
-<div id="top_x_div" style="width: 900px; height: 500px;"></div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawStuff);
-
-      function drawStuff() {
-        var data = new google.visualization.arrayToDataTable([
-          ['Opening Move', 'Percentage'],
-          ["Dhaka City", 843],
-          ["Narayanganj", 309],
-          ["Gazipur", 161],
-          ["Narshingdi", 93],
-          ['Kishorgonj', 54]
-        ]);
-
-        var options = {
-          title: 'Chess opening moves',
-          width: 400,
-					height: 300,
-          legend: { position: 'none' },
-          chart: { title: 'Disctrict Wise Most Affected Areas' },
-          bars: 'vertical', // Required for Material Bar Charts.
-          axes: {
-            x: {
-              0: { side: 'bottom', label: 'Percentage'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "90%" }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-        chart.draw(data, options);
-      };
-		</script>
-		
+	
 </body>
 </html>
